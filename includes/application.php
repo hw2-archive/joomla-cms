@@ -44,7 +44,6 @@ final class JSite extends JApplication
 	public function __construct($config = array())
 	{
 		$config['clientId'] = 0;
-                $config['session'] = false; //[hw2] disable sessions
 		parent::__construct($config);
 	}
 
