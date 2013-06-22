@@ -65,7 +65,7 @@ JHtml::addIncludePath(JPATH_PLATFORM . '/legacy/html');
 if (version_compare(PHP_VERSION, '5.4.0', '<'))
 {
         JLoader::import('compat.jsonserializable'); // hw2 workaround for register function that doesn't support not namespaced classes
-	//JLoader::register('JsonSerializable', __DIR__ . '/compat/jsonserializable.php');
+	//JLoader::register('\JsonSerializable', __DIR__ . '/compat/jsonserializable.php');
 }
 
 // Add deprecated constants
