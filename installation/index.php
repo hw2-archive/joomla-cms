@@ -1,4 +1,4 @@
-<?php
+<?php namespace Hwj;
 /**
  * @package    Joomla.Installation
  *
@@ -13,30 +13,30 @@ if (version_compare(PHP_VERSION, '5.3.1', '<'))
 
 /**
  * Constant that is checked in included files to prevent direct access.
- * define() is used in the installation folder rather than "const" to not error for PHP 5.2 and lower
+ * my_define() is used in the installation folder rather than "const" to not error for PHP 5.2 and lower
  */
-define('_JEXEC', 1);
+my_define_d('_JEXEC', 1);
 
 /**
  * Constant that defines the base path of the installed Joomla site.
- * define() is used in the installation folder rather than "const" to not error for PHP 5.2 and lower
+ * my_define() is used in the installation folder rather than "const" to not error for PHP 5.2 and lower
  */
-define('JPATH_BASE', dirname(__FILE__));
+my_define_d('JPATH_BASE', dirname(__FILE__));
 
 // Set path constants.
 $parts = explode(DIRECTORY_SEPARATOR, JPATH_BASE);
 array_pop($parts);
 
-define('JPATH_ROOT',          implode(DIRECTORY_SEPARATOR, $parts));
-define('JPATH_SITE',          JPATH_ROOT);
-define('JPATH_CONFIGURATION', JPATH_ROOT);
-define('JPATH_ADMINISTRATOR', JPATH_ROOT . '/administrator');
-define('JPATH_LIBRARIES',     JPATH_ROOT . '/libraries');
-define('JPATH_PLUGINS',       JPATH_ROOT . '/plugins');
-define('JPATH_INSTALLATION',  JPATH_ROOT . '/installation');
-define('JPATH_THEMES',        JPATH_BASE);
-define('JPATH_CACHE',         JPATH_ROOT . '/cache');
-define('JPATH_MANIFESTS',     JPATH_ADMINISTRATOR . '/manifests');
+my_define_d('JPATH_ROOT',          implode(DIRECTORY_SEPARATOR, $parts));
+my_define_d('JPATH_SITE',          JPATH_ROOT);
+my_define_d('JPATH_CONFIGURATION', JPATH_ROOT);
+my_define_d('JPATH_ADMINISTRATOR', JPATH_ROOT . '/administrator');
+my_define_d('JPATH_LIBRARIES',     JPATH_ROOT . '/libraries');
+my_define_d('JPATH_PLUGINS',       JPATH_ROOT . '/plugins');
+my_define_d('JPATH_INSTALLATION',  JPATH_ROOT . '/installation');
+my_define_d('JPATH_THEMES',        JPATH_BASE);
+my_define_d('JPATH_CACHE',         JPATH_ROOT . '/cache');
+my_define_d('JPATH_MANIFESTS',     JPATH_ADMINISTRATOR . '/manifests');
 
 /*
  * Joomla system checks.

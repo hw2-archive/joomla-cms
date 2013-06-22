@@ -1,4 +1,4 @@
-<?php
+<?php namespace Hwj;
 /**
  * @package    Joomla.Installation
  *
@@ -6,7 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_JEXEC') or die;
+my_defined('_JEXEC') or die;
 ?>
 <?php echo JHtml::_('installation.stepbar'); ?>
 <div class="btn-toolbar">

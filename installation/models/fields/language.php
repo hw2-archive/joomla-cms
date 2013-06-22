@@ -1,4 +1,4 @@
-<?php
+<?php namespace Hwj;
 /**
  * @package    Joomla.Installation
  *
@@ -6,7 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('JPATH_BASE') or die;
+my_defined('JPATH_BASE') or die;
 
 JFormHelper::loadFieldClass('list');
 
@@ -61,7 +61,7 @@ class JFormFieldLanguage extends JFormFieldList
 
 		// Get the list of available languages.
 		$options = JLanguageHelper::createLanguageList($native);
-		if (!$options || $options  instanceof Exception)
+		if (!$options || $options  instanceof \Exception)
 		{
 			$options = array();
 		}

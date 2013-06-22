@@ -1,4 +1,4 @@
-<?php
+<?php namespace Hwj;
 /**
  * @package    Joomla.Installation
  *
@@ -6,7 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_JEXEC') or die;
+my_defined('_JEXEC') or die;
 
 JLoader::register('InstallationControllerSetup', __DIR__ . '/setup.json.php');
 
@@ -45,7 +45,7 @@ class InstallationControllerLanguages extends InstallationControllerSetup
 	public function installLanguages()
 	{
 		// Check for a valid token. If invalid, send a 403 with the error message.
-		JSession::checkToken() or $this->sendResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
+		JSession::checkToken() or $this->sendResponse(new \Exception(JText::_('JINVALID_TOKEN'), 403));
 
 		// Get the application object.
 		$app = JFactory::getApplication();
@@ -70,7 +70,7 @@ class InstallationControllerLanguages extends InstallationControllerSetup
 			$return = $model->install($lids);
 		}
 
-		$r = new stdClass;
+		$r = new \stdClass;
 
 		// Check for validation errors.
 		if ($return === false)
@@ -81,7 +81,7 @@ class InstallationControllerLanguages extends InstallationControllerSetup
 			// Push up to three validation messages out to the user.
 			for ($i = 0, $n = count($errors); $i < $n && $i < 3; $i++)
 			{
-				if ($errors[$i] instanceof Exception)
+				if ($errors[$i] instanceof \Exception)
 				{
 					$app->enqueueMessage($errors[$i]->getMessage(), 'warning');
 				}
@@ -113,7 +113,7 @@ class InstallationControllerLanguages extends InstallationControllerSetup
 	function setDefaultLanguage()
 	{
 		// Check for a valid token. If invalid, send a 403 with the error message.
-		JSession::checkToken() or $this->sendResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
+		JSession::checkToken() or $this->sendResponse(new \Exception(JText::_('JINVALID_TOKEN'), 403));
 
 		// Get the languages model.
 		$model = $this->getModel('Languages', 'InstallationModel');
@@ -128,7 +128,7 @@ class InstallationControllerLanguages extends InstallationControllerSetup
 		}
 
 		$app = JFactory::getApplication();
-		$r   = new stdClass;
+		$r   = new \stdClass;
 
 		if (!$model->setDefault($admin_lang, 'administrator'))
 		{

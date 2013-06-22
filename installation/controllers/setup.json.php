@@ -1,4 +1,4 @@
-<?php
+<?php namespace Hwj;
 /**
  * @package    Joomla.Installation
  *
@@ -6,7 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_JEXEC') or die;
+my_defined('_JEXEC') or die;
 
 /**
  * Setup controller for the Joomla Core Installer.
@@ -27,7 +27,7 @@ class InstallationControllerSetup extends JControllerLegacy
 	public function setlanguage()
 	{
 		// Check for request forgeries.
-		JSession::checkToken() or $this->sendResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
+		JSession::checkToken() or $this->sendResponse(new \Exception(JText::_('JINVALID_TOKEN'), 403));
 
 		// Get the application object.
 		$app = JFactory::getApplication();
@@ -47,7 +47,7 @@ class InstallationControllerSetup extends JControllerLegacy
 
 		if ($session->isNew())
 		{
-			$this->sendResponse(new Exception(JText::_('INSTL_COOKIES_NOT_ENABLED'), 500));
+			$this->sendResponse(new \Exception(JText::_('INSTL_COOKIES_NOT_ENABLED'), 500));
 		}
 
 		// Get the setup model.
@@ -57,7 +57,7 @@ class InstallationControllerSetup extends JControllerLegacy
 		$data = $this->input->post->get('jform', array(), 'array');
 		$return	= $model->validate($data, 'preinstall');
 
-		$r = new stdClass;
+		$r = new \stdClass;
 
 		// Check for validation errors.
 		if ($return === false)
@@ -68,7 +68,7 @@ class InstallationControllerSetup extends JControllerLegacy
 			// Push up to three validation messages out to the user.
 			for ($i = 0, $n = count($errors); $i < $n && $i < 3; $i++)
 			{
-				if ($errors[$i] instanceof Exception)
+				if ($errors[$i] instanceof \Exception)
 				{
 					$app->enqueueMessage($errors[$i]->getMessage(), 'warning');
 				}
@@ -104,7 +104,7 @@ class InstallationControllerSetup extends JControllerLegacy
 	 */
 	public function preinstall()
 	{
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->view = 'preinstall';
 		$this->sendResponse($r);
 	}
@@ -121,7 +121,7 @@ class InstallationControllerSetup extends JControllerLegacy
 			return false;
 		}
 
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->view = 'database';
 		$this->sendResponse($r);
 	}
@@ -142,7 +142,7 @@ class InstallationControllerSetup extends JControllerLegacy
 		$path = JPATH_CONFIGURATION . '/configuration.php';
 		$useftp = (file_exists($path)) ? !is_writable($path) : !is_writable(JPATH_CONFIGURATION . '/');
 
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->view = $useftp ? 'ftp' : 'summary';
 
 		// Get the database model.
@@ -174,7 +174,7 @@ class InstallationControllerSetup extends JControllerLegacy
 			return false;
 		}
 
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->view = 'summary';
 		$this->sendResponse($r);
 	}
@@ -191,7 +191,7 @@ class InstallationControllerSetup extends JControllerLegacy
 			return false;
 		}
 
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->view = 'install';
 		$this->sendResponse($r);
 	}
@@ -215,7 +215,7 @@ class InstallationControllerSetup extends JControllerLegacy
 	 */
 	public function install_database_backup()
 	{
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->view = 'install';
 
 		// Get the setup model.
@@ -247,7 +247,7 @@ class InstallationControllerSetup extends JControllerLegacy
 	 */
 	public function install_database()
 	{
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->view = 'install';
 
 		// Get the setup model.
@@ -278,7 +278,7 @@ class InstallationControllerSetup extends JControllerLegacy
 	 */
 	public function install_sample()
 	{
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->view = 'install';
 
 		// Get the setup model.
@@ -309,7 +309,7 @@ class InstallationControllerSetup extends JControllerLegacy
 	 */
 	public function install_config()
 	{
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->view = 'install';
 
 		// Get the setup model.
@@ -340,7 +340,7 @@ class InstallationControllerSetup extends JControllerLegacy
 	 */
 	public function install_email()
 	{
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->view = 'install';
 
 		// Get the setup model.
@@ -416,7 +416,7 @@ class InstallationControllerSetup extends JControllerLegacy
 		$mail->setBody($body);
 		$sent = $mail->Send();
 
-		if (($sent instanceof Exception))
+		if (($sent instanceof \Exception))
 		{
 			$app = JFactory::getApplication();
 			$app->enqueueMessage(JText::_('INSTL_EMAIL_NOT_SENT'), 'notice');
@@ -446,7 +446,7 @@ class InstallationControllerSetup extends JControllerLegacy
 	{
 
 		// Check for request forgeries.
-		JSession::checkToken() or $this->sendResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
+		JSession::checkToken() or $this->sendResponse(new \Exception(JText::_('JINVALID_TOKEN'), 403));
 
 		// Get the application object.
 		$app = JFactory::getApplication();
@@ -474,7 +474,7 @@ class InstallationControllerSetup extends JControllerLegacy
 			// Push up to three validation messages out to the user.
 			for ($i = 0, $n = count($errors); $i < $n && $i < 3; $i++)
 			{
-				if ($errors[$i] instanceof Exception)
+				if ($errors[$i] instanceof \Exception)
 				{
 					$app->enqueueMessage($errors[$i]->getMessage(), 'warning');
 				}
@@ -485,7 +485,7 @@ class InstallationControllerSetup extends JControllerLegacy
 			}
 
 			// Redirect back to the page.
-			$r = new stdClass;
+			$r = new \stdClass;
 			$r->view = $page;
 			$this->sendResponse($r);
 
@@ -509,7 +509,7 @@ class InstallationControllerSetup extends JControllerLegacy
 	{
 
 		// Check for a valid token. If invalid, send a 403 with the error message.
-		JSession::checkToken('request') or $this->sendResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
+		JSession::checkToken('request') or $this->sendResponse(new \Exception(JText::_('JINVALID_TOKEN'), 403));
 
 		// Get the posted config options.
 		$vars = $this->input->get('jform', array(), 'array');
@@ -529,11 +529,11 @@ class InstallationControllerSetup extends JControllerLegacy
 		// If an error was encountered return an error.
 		if (!$return)
 		{
-			$this->sendResponse(new Exception($ftp->getError(), 500));
+			$this->sendResponse(new \Exception($ftp->getError(), 500));
 		}
 
 		// Create a response body.
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->root = $return;
 
 		// Send the response.
@@ -549,7 +549,7 @@ class InstallationControllerSetup extends JControllerLegacy
 	{
 
 		// Check for a valid token. If invalid, send a 403 with the error message.
-		JSession::checkToken('request') or $this->sendResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
+		JSession::checkToken('request') or $this->sendResponse(new \Exception(JText::_('JINVALID_TOKEN'), 403));
 
 		// Get the posted config options.
 		$vars = $this->input->get('jform', array(), 'array');
@@ -569,11 +569,11 @@ class InstallationControllerSetup extends JControllerLegacy
 		// If an error was encountered return an error.
 		if (!$return)
 		{
-			$this->sendResponse(new Exception($ftp->getError(), 500));
+			$this->sendResponse(new \Exception($ftp->getError(), 500));
 		}
 
 		// Create a response body.
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->valid = $return;
 
 		// Send the response.
@@ -590,7 +590,7 @@ class InstallationControllerSetup extends JControllerLegacy
 		jimport('joomla.filesystem.folder');
 
 		// Check for a valid token. If invalid, send a 403 with the error message.
-		JSession::checkToken('request') or $this->sendResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
+		JSession::checkToken('request') or $this->sendResponse(new \Exception(JText::_('JINVALID_TOKEN'), 403));
 
 		// Get the posted config options.
 		$vars = $this->input->get('jform', array(), 'array');
@@ -600,7 +600,7 @@ class InstallationControllerSetup extends JControllerLegacy
 		// Check whether the folder still exists
 		if (!file_exists($path))
 		{
-			$this->sendResponse(new Exception(JText::sprintf('INSTL_COMPLETE_ERROR_FOLDER_ALREADY_REMOVED'), 500));
+			$this->sendResponse(new \Exception(JText::sprintf('INSTL_COMPLETE_ERROR_FOLDER_ALREADY_REMOVED'), 500));
 		}
 
 		// Check whether we need to use FTP
@@ -661,11 +661,11 @@ class InstallationControllerSetup extends JControllerLegacy
 		// If an error was encountered return an error.
 		if (!$return)
 		{
-			$this->sendResponse(new Exception(JText::_('INSTL_COMPLETE_ERROR_FOLDER_DELETE'), 500));
+			$this->sendResponse(new \Exception(JText::_('INSTL_COMPLETE_ERROR_FOLDER_DELETE'), 500));
 		}
 
 		// Create a response body.
-		$r = new stdClass;
+		$r = new \stdClass;
 		$r->text = JText::_('INSTL_COMPLETE_FOLDER_REMOVED');
 
 		// Send the response.
@@ -674,10 +674,10 @@ class InstallationControllerSetup extends JControllerLegacy
 
 	/**
 	 * Method to handle a send a JSON response. The data parameter
-	 * can be a Exception object for when an error has occurred or
+	 * can be a \Exception object for when an error has occurred or
 	 * a stdClss object for a good response.
 	 *
-	 * @param   object  $response  stdClass on success, Exception on failure.
+	 * @param   object  $response  \stdClass on success, \Exception on failure.
 	 *
 	 * @return  void
 	 *
@@ -687,7 +687,7 @@ class InstallationControllerSetup extends JControllerLegacy
 	{
 
 		// Check if we need to send an error code.
-		if ($response instanceof Exception)
+		if ($response instanceof \Exception)
 		{
 
 			// Send the appropriate error code response.
@@ -745,7 +745,7 @@ class InstallationJsonResponse
 		}
 
 		// Check if we are dealing with an error.
-		if ($state instanceof Exception)
+		if ($state instanceof \Exception)
 		{
 
 			// Prepare the error response.

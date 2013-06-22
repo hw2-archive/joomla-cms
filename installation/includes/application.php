@@ -1,4 +1,4 @@
-<?php
+<?php namespace Hwj;
 /**
  * @package    Joomla.Installation
  *
@@ -6,7 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_JEXEC') or die;
+my_defined('_JEXEC') or die;
 
 /**
  * Joomla Application class
@@ -57,9 +57,9 @@ class JInstallation extends JApplication
 		}
 
 		// Define component path
-		define('JPATH_COMPONENT', JPATH_BASE);
-		define('JPATH_COMPONENT_SITE', JPATH_SITE);
-		define('JPATH_COMPONENT_ADMINISTRATOR', JPATH_ADMINISTRATOR);
+		my_define_d('JPATH_COMPONENT', JPATH_BASE);
+		my_define_d('JPATH_COMPONENT_SITE', JPATH_SITE);
+		my_define_d('JPATH_COMPONENT_ADMINISTRATOR', JPATH_ADMINISTRATOR);
 
 		// Start the output buffer.
 		ob_start();
@@ -258,7 +258,7 @@ class JInstallation extends JApplication
 	{
 		if ((bool) $params)
 		{
-			$template = new stdClass;
+			$template = new \stdClass;
 			$template->template = 'template';
 			$template->params = new JRegistry;
 			return $template;

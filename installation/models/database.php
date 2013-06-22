@@ -1,4 +1,4 @@
-<?php
+<?php namespace Hwj;
 /**
  * @package    Joomla.Installation
  *
@@ -6,7 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_JEXEC') or die;
+my_defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
@@ -145,7 +145,7 @@ class InstallationModelDatabase extends JModelLegacy
 		{
 			return InstallationHelperDatabase::getDbo($options->db_type, $options->db_host, $options->db_user, $options->db_pass, $options->db_name, $options->db_prefix, $options->db_select);
 		}
-		catch (RuntimeException $e)
+		catch (\RuntimeException $e)
 		{
 			$this->setError(JText::sprintf('INSTL_DATABASE_COULD_NOT_CONNECT', $e->getMessage()));
 			return false;
@@ -179,7 +179,7 @@ class InstallationModelDatabase extends JModelLegacy
 		{
 			$db_version = $db->getVersion();
 		}
-		catch (RuntimeException $e)
+		catch (\RuntimeException $e)
 		{
 			$this->setError(JText::sprintf('INSTL_DATABASE_COULD_NOT_CONNECT', $e->getMessage()));
 			return false;
@@ -230,7 +230,7 @@ class InstallationModelDatabase extends JModelLegacy
 		{
 			$db->select($options->db_name);
 		}
-		catch (RuntimeException $e)
+		catch (\RuntimeException $e)
 		{
 			// If the database could not be selected, attempt to create it and then select it.
 			if ($this->createDB($db, $options, $utfSupport))
@@ -405,7 +405,7 @@ class InstallationModelDatabase extends JModelLegacy
 		{
 			$db->execute();
 		}
-		catch (RuntimeException $e)
+		catch (\RuntimeException $e)
 		{
 			$this->setError($e->getMessage());
 			return false;
@@ -422,7 +422,7 @@ class InstallationModelDatabase extends JModelLegacy
 		{
 			$extensions = $db->loadObjectList();
 		}
-		catch (RuntimeException $e)
+		catch (\RuntimeException $e)
 		{
 			$this->setError($e->getMessage());
 			$return = false;
@@ -494,7 +494,7 @@ class InstallationModelDatabase extends JModelLegacy
 			{
 				$db->execute();
 			}
-			catch (RuntimeException $e)
+			catch (\RuntimeException $e)
 			{
 				$this->setError($e->getMessage());
 				$return = false;
@@ -629,7 +629,7 @@ class InstallationModelDatabase extends JModelLegacy
 					{
 						$db->dropTable($backupTable, true);
 					}
-					catch (RuntimeException $e)
+					catch (\RuntimeException $e)
 					{
 						$this->setError($e->getMessage());
 						$return = false;
@@ -640,7 +640,7 @@ class InstallationModelDatabase extends JModelLegacy
 					{
 						$db->renameTable($table, $backupTable, $backup, $prefix);
 					}
-					catch (RuntimeException $e)
+					catch (\RuntimeException $e)
 					{
 						$this->setError($e->getMessage());
 						$return = false;
@@ -672,7 +672,7 @@ class InstallationModelDatabase extends JModelLegacy
 			// Run the create database query.
 			$db->createDatabase($options, $utf);
 		}
-		catch (RuntimeException $e)
+		catch (\RuntimeException $e)
 		{
 			// If an error occurred return false.
 			return false;
@@ -710,7 +710,7 @@ class InstallationModelDatabase extends JModelLegacy
 					{
 						$db->dropTable($table);
 					}
-					catch (RuntimeException $e)
+					catch (\RuntimeException $e)
 					{
 						$this->setError($e->getMessage());
 						$return = false;
@@ -760,7 +760,7 @@ class InstallationModelDatabase extends JModelLegacy
 				{
 					$db->execute();
 				}
-				catch (RuntimeException $e)
+				catch (\RuntimeException $e)
 				{
 					$this->setError($e->getMessage());
 					$return = false;
@@ -793,7 +793,7 @@ class InstallationModelDatabase extends JModelLegacy
 		{
 			$db->execute();
 		}
-		catch (RuntimeException $e)
+		catch (\RuntimeException $e)
 		{
 			return false;
 		}

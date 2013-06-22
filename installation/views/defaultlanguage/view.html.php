@@ -1,4 +1,4 @@
-<?php
+<?php namespace Hwj;
 /**
  * @package    Joomla.Installation
  *
@@ -6,7 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_JEXEC') or die;
+my_defined('_JEXEC') or die;
 
 /**
  * The HTML Joomla Core Default Language View
@@ -30,7 +30,7 @@ class InstallationViewDefaultlanguage extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
-		$items = new stdClass;
+		$items = new \stdClass;
 		$items->administrator	= $this->get('InstalledlangsAdministrator');
 		$items->frontend		= $this->get('InstalledlangsFrontend');
 

@@ -1,4 +1,4 @@
-<?php
+<?php namespace Hwj;
 /**
  * @package    Joomla.Installation
  *
@@ -8,7 +8,7 @@
  * @since      3.0.x
  */
 
-defined('_JEXEC') or die;
+my_defined('_JEXEC') or die;
 
 jimport('joomla.updater.update');
 
@@ -89,7 +89,7 @@ class InstallationModelLanguages extends JModelLegacy
 		$db->setQuery($query);
 		$list = $db->loadObjectList();
 
-		if (!$list || $list instanceof Exception)
+		if (!$list || $list instanceof \Exception)
 		{
 			$list = array();
 		}
@@ -282,7 +282,7 @@ class InstallationModelLanguages extends JModelLegacy
 		{
 			$file = $path . '/' . $lang . '/' . $lang . '.xml';
 			$info = JInstaller::parseXMLInstallFile($file);
-			$row = new stdClass;
+			$row = new \stdClass;
 			$row->language = $lang;
 
 			if (!is_array($info))

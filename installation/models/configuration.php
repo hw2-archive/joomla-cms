@@ -1,4 +1,4 @@
-<?php
+<?php namespace Hwj;
 /**
  * @package    Joomla.Installation
  *
@@ -6,7 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-defined('_JEXEC') or die;
+my_defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.file');
 require_once JPATH_INSTALLATION . '/helpers/database.php';
@@ -231,7 +231,7 @@ class InstallationModelConfiguration extends JModelLegacy
 		{
 			$db = InstallationHelperDatabase::getDBO($options->db_type, $options->db_host, $options->db_user, $options->db_pass, $options->db_name, $options->db_prefix);
 		}
-		catch (RuntimeException $e)
+		catch (\RuntimeException $e)
 		{
 			$this->setError(JText::sprintf('INSTL_ERROR_CONNECT_DB', $e->getMessage()));
 		}
@@ -301,7 +301,7 @@ class InstallationModelConfiguration extends JModelLegacy
 		{
 			$db->execute();
 		}
-		catch (RuntimeException $e)
+		catch (\RuntimeException $e)
 		{
 			$this->setError($e->getMessage());
 			return false;
@@ -335,7 +335,7 @@ class InstallationModelConfiguration extends JModelLegacy
 		{
 			$db->execute();
 		}
-		catch (RuntimeException $e)
+		catch (\RuntimeException $e)
 		{
 			$this->setError($e->getMessage());
 			return false;
