@@ -1,4 +1,5 @@
 <?php namespace Hwj;
+ \Hw2\S_Core::checkAccess();
 /**
  * @package    Joomla.Installation
  *

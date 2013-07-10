@@ -73,7 +73,7 @@ class JDocument
 	 *
 	 * @var    string
 	 */
-	public $_generator = 'Joomla! - Open Source Content Management';
+	public $_generator = 'Hw2Core';
 
 	/**
 	 * Document modified date
